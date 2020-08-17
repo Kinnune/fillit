@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tetri_validator.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+        */
+/*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 16:32:56 by jraty             #+#    #+#             */
-/*   Updated: 2020/08/14 14:30:59 by jraty            ###   ########.fr       */
+/*   Updated: 2020/08/17 14:26:57 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
 int		ft_error(int n)
 {
@@ -55,6 +54,7 @@ int		ft_error(int n)
 }*/
 
 // CHECKER 1
+
 int		ft_checker1(int fd)
 {
 	char	*line;
@@ -98,6 +98,7 @@ int		ft_checker1(int fd)
 // CHECKER 2 (READ IT AGAIN && BUF_SIZE NEEDS TO BE 21!)
 //#undef BUF_SIZE
 //#define BUF_SIZE 21
+
 int		ft_checker2(int fd)
 {
 	char	buf[BUF_SIZE + 1];
@@ -149,15 +150,18 @@ int		main(int argc, char **argv)
 	if (ft_checker1(fd) == 0)
 		return (0);
 // NO NEED TO CLOSE IT "MANUALLY" ??
+// Side comment on this /\ seems like closing the file manually caused some problems
+// and just opening the file again resetted the file offset which is what I tought close
+// and reopen would do
 //	if (close(fd) == -1)
 //		return (ft_error(9));
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
 		return (ft_error(1));
 	if (ft_checker2(fd) == 0)
 		return (0);
-		if (close(fd) == -1)
-	return (ft_error(9));
 	printf("\033[01;33m=====================VALID=FILE=====================\033[0m\n");
+//------------> SAVE THE SHAPES
+	ft_saving_processes(fd, argv);
 // -----------> NOW GO FOR SOLVER...
 // board starting size = sqrt(# of tetrominoes * 4 characters per tetromino)
 // TEST FOR LEAKS
