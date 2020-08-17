@@ -6,13 +6,13 @@
 #    By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/06 16:20:49 by jraty             #+#    #+#              #
-#    Updated: 2020/08/17 13:24:51 by ekinnune         ###   ########.fr        #
+#    Updated: 2020/08/17 13:49:59 by ekinnune         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit.exe
 
-SRCS = tetri_validator.c
+SRCS = tetri_validator.c shape_makers.c
 
 OBJS = $(SRCS:.c=.o)
 
