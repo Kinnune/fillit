@@ -6,7 +6,7 @@
 #    By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/06 16:20:49 by jraty             #+#    #+#              #
-#    Updated: 2020/08/17 13:49:59 by ekinnune         ###   ########.fr        #
+#    Updated: 2020/08/17 16:04:45 by ekinnune         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,7 @@ all: $(NAME)
 $(NAME):
 	@make -C $(LIB) re
 	@make -C $(LIB) clean
-	@gcc $(FLAGS) -I $(LIB) -o $(OBJS) -c $(SRCS)
-	@gcc -o $(NAME) $(OBJS) -I $(LIB) -L $(LIB) -lft
+	@gcc -o $(NAME) $(SRCS) -I $(LIB) -L $(LIB) -lft
 
 clean:
 	@/bin/rm -f $(OBJS)
