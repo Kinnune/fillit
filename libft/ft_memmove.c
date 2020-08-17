@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/10 12:30:12 by jraty             #+#    #+#             */
-/*   Updated: 2020/08/17 13:24:09 by ekinnune         ###   ########.fr       */
+/*   Created: 2020/06/17 16:28:02 by ekinnune          #+#    #+#             */
+/*   Updated: 2020/07/19 17:55:47 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-#include "libft/libft.h"
-#include <fcntl.h>
+void	*ft_memmove(void *dest, const void *src, size_t len)
+{
+	unsigned char *dest_ptr;
+	unsigned char *src_ptr;
 
-# define BUF_SIZE 21
-
-#endif
+	dest_ptr = (unsigned char *)dest;
+	src_ptr = (unsigned char *)src;
+	if (src_ptr < dest_ptr)
+	{
+		src_ptr += len;
+		dest_ptr += len;
+		while (len)
+		{
+			*--dest_ptr = *--src_ptr;
+			len--;
+		}
+	}
+	else
+		ft_memcpy(dest_ptr, src_ptr, len);
+	return (dest);
+}

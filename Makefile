@@ -3,20 +3,20 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+         #
+#    By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/06 16:20:49 by jraty             #+#    #+#              #
-#    Updated: 2020/08/14 11:24:53 by jraty            ###   ########.fr        #
+#    Updated: 2020/08/17 13:24:51 by ekinnune         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fillit
+NAME = fillit.exe
 
 SRCS = tetri_validator.c
 
 OBJS = $(SRCS:.c=.o)
 
-LIB = /Users/jraty/libft/
+LIB = libft
 
 HDRS = $(LIB)libft.h $(LIB)get_next_line.h
 

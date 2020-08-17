@@ -1,21 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_striter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/10 12:30:12 by jraty             #+#    #+#             */
-/*   Updated: 2020/08/17 13:24:09 by ekinnune         ###   ########.fr       */
+/*   Created: 2020/06/21 15:46:50 by ekinnune          #+#    #+#             */
+/*   Updated: 2020/07/01 11:32:14 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
-
-#include "libft/libft.h"
-#include <fcntl.h>
-
-# define BUF_SIZE 21
-
-#endif
+void	ft_striter(char *s, void (*f)(char *))
+{
+	while (*s)
+		(*f)(s++);
+}

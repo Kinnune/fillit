@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/10 12:30:12 by jraty             #+#    #+#             */
-/*   Updated: 2020/08/17 13:24:09 by ekinnune         ###   ########.fr       */
+/*   Created: 2020/06/11 14:34:02 by ekinnune          #+#    #+#             */
+/*   Updated: 2020/07/17 18:16:36 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-#include "libft/libft.h"
-#include <fcntl.h>
+char	*ft_strcat(char *dest, const char *src)
+{
+	size_t len;
+	size_t dest_len;
 
-# define BUF_SIZE 21
-
-#endif
+	dest_len = ft_strlen(dest);
+	len = dest_len + ft_strlen(src);
+	while (dest_len < len)
+		dest[dest_len++] = *(src++);
+	dest[dest_len] = '\0';
+	return (dest);
+}

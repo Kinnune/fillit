@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/10 12:30:12 by jraty             #+#    #+#             */
-/*   Updated: 2020/08/17 13:24:09 by ekinnune         ###   ########.fr       */
+/*   Created: 2020/06/18 12:53:18 by ekinnune          #+#    #+#             */
+/*   Updated: 2020/07/23 01:35:43 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-#include "libft/libft.h"
-#include <fcntl.h>
+void	*ft_memalloc(size_t size)
+{
+	void *mem_area;
 
-# define BUF_SIZE 21
-
-#endif
+	mem_area = (char *)malloc(size);
+	if (mem_area)
+	{
+		ft_bzero(mem_area, size);
+	}
+	return (mem_area);
+}

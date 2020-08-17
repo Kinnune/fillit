@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/10 12:30:12 by jraty             #+#    #+#             */
-/*   Updated: 2020/08/17 13:24:09 by ekinnune         ###   ########.fr       */
+/*   Created: 2020/06/09 18:56:45 by ekinnune          #+#    #+#             */
+/*   Updated: 2020/07/21 20:33:52 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-#include "libft/libft.h"
-#include <fcntl.h>
+size_t	ft_strlen(const char *s)
+{
+	size_t s_len;
 
-# define BUF_SIZE 21
-
-#endif
+	s_len = 0;
+	if (s)
+		while (*s++)
+			s_len++;
+	return (s_len);
+}

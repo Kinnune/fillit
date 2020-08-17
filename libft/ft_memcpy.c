@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/10 12:30:12 by jraty             #+#    #+#             */
-/*   Updated: 2020/08/17 13:24:09 by ekinnune         ###   ########.fr       */
+/*   Created: 2020/06/17 15:50:36 by ekinnune          #+#    #+#             */
+/*   Updated: 2020/07/17 19:07:58 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-#include "libft/libft.h"
-#include <fcntl.h>
+void	*ft_memcpy(void *dest, const void *src, size_t n)
+{
+	unsigned char *dest_ptr;
+	unsigned char *src_ptr;
 
-# define BUF_SIZE 21
-
-#endif
+	dest_ptr = (unsigned char *)dest;
+	src_ptr = (unsigned char *)src;
+	while (n)
+	{
+		*dest_ptr++ = *src_ptr++;
+		n--;
+	}
+	return (dest);
+}

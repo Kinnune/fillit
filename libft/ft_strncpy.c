@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/10 12:30:12 by jraty             #+#    #+#             */
-/*   Updated: 2020/08/17 13:24:09 by ekinnune         ###   ########.fr       */
+/*   Created: 2020/06/12 15:41:36 by ekinnune          #+#    #+#             */
+/*   Updated: 2020/07/01 10:29:44 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-#include "libft/libft.h"
-#include <fcntl.h>
+char	*ft_strncpy(char *dest, const char *src, size_t n)
+{
+	char *dest_ptr;
 
-# define BUF_SIZE 21
-
-#endif
+	dest_ptr = dest;
+	while (n--)
+	{
+		if (*src)
+			*dest++ = *src++;
+		else
+			*dest++ = '\0';
+	}
+	return (dest_ptr);
+}

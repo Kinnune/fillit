@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/10 12:30:12 by jraty             #+#    #+#             */
-/*   Updated: 2020/08/17 13:24:09 by ekinnune         ###   ########.fr       */
+/*   Created: 2020/06/13 12:37:05 by ekinnune          #+#    #+#             */
+/*   Updated: 2020/07/17 18:36:13 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-#include "libft/libft.h"
-#include <fcntl.h>
+char	*ft_strrchr(const char *s, int c)
+{
+	size_t	check;
 
-# define BUF_SIZE 21
-
-#endif
+	check = 0;
+	while (*s)
+	{
+		if (*s++ == (char)c)
+			check++;
+	}
+	if (*s == '\0' && (char)c == '\0')
+		return ((char *)s);
+	if (check == 0)
+		return (NULL);
+	else
+	{
+		while (*s != (char)c)
+			s--;
+	}
+	return ((char *)s);
+}

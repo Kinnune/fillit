@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/10 12:30:12 by jraty             #+#    #+#             */
-/*   Updated: 2020/08/17 13:24:09 by ekinnune         ###   ########.fr       */
+/*   Created: 2020/06/18 14:57:34 by ekinnune          #+#    #+#             */
+/*   Updated: 2020/07/17 18:33:08 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-#include "libft/libft.h"
-#include <fcntl.h>
+char	*ft_strnew(size_t size)
+{
+	char	*new_str;
+	char	*new_str_ptr;
+	size_t	i;
 
-# define BUF_SIZE 21
-
-#endif
+	i = 0;
+	new_str = (char *)malloc(size + 1);
+	if (!new_str)
+		return (NULL);
+	new_str_ptr = new_str;
+	while (i++ <= size)
+		*new_str++ = '\0';
+	return (new_str_ptr);
+}
