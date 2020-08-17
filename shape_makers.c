@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 13:30:41 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/08/17 15:16:12 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/08/17 17:35:38 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ size_t	ft_file_size(fd)
 	return (size);
 }
 
-void	ft_single_shapes(char *f_content, size_t f_size)
+char	**ft_single_shapes(char *f_content)
 {
 	char	**shape_list;
 	size_t	shape_count;
@@ -43,20 +43,26 @@ void	ft_single_shapes(char *f_content, size_t f_size)
 		sub_i += 21;
 	}
 	shape_list[i] = NULL;
+	return (shape_list);
 }
 
-int		ft_saving_processes(int fd, char **argv)
+char	**ft_file_save(int fd, char **argv)
 {
 	size_t	f_size;
 	char	*file;
 
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
-		return (ft_error(1));
+	{
+		ft_putstr_fd("OPEN FAILED", 2);
+		return (NULL);
+	}
 	f_size = ft_file_size(fd);
 	file = ft_strnew(f_size);
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
-		return (ft_error(1));
+	{
+		ft_putstr_fd("OPEN FAILED", 2);
+		return (NULL);
+	}
 	read(fd, file, f_size);
-	ft_single_shapes(file, f_size);
-	return (0);
+	return (ft_single_shapes(file));
 }
