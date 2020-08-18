@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 19:06:20 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/08/17 20:04:20 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/08/18 15:37:04 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	ft_set_coordinates(t_tetro **element)
 	int		block_count;
 
 	y = 0;
-	x = y;
-	i = x;
-	block_count = i;
+	x = 0;
+	i = 0;
+	block_count = 0;
 	str = (*element)->raw;
 	while(str[i])
 	{
@@ -31,7 +31,8 @@ void	ft_set_coordinates(t_tetro **element)
 		{
 			x = (i - y) % 4;
 			(*element)->x[block_count] = x;
-			(*element)->y[block_count++] = y;
+			(*element)->y[block_count] = y;
+			block_count++;
 		}
 		if (str[i] == '\n')
 			y++;
@@ -39,16 +40,18 @@ void	ft_set_coordinates(t_tetro **element)
 	}
 }
 
-t_tetro	*new_tetro(char *tetro, t_tetro *previous, int i)
+t_tetro	*new_tetro(char *tetro_string, t_tetro *previous, int i)
 {
 	t_tetro *new;
 
 	new = (t_tetro *)malloc(sizeof(t_tetro));
 	new->letter = i;
-	new->raw = tetro;
+	new->raw = tetro_string;
 	new->next = NULL;
 	new->prev = previous;
 	ft_set_coordinates(&new);
+	new->x_min = new->x[0];
+	new->y_min = new->y[0];
 	return (new);
 }
 

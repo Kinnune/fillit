@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tetri_validator.c                                  :+:      :+:    :+:   */
+/*   tetriiiii.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+        */
+/*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 16:32:56 by jraty             #+#    #+#             */
-/*   Updated: 2020/08/18 13:47:13 by jraty            ###   ########.fr       */
+/*   Updated: 2020/08/18 17:01:55 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ int		main(int argc, char **argv)
 {
 	int		fd;
 	char	**raw_2d;
-	t_tetro	*ptr_tetro;
+	t_tetro	*struct_tetro;
 	int		i;
 	if (argc != 2)
 		return (ft_error(0));
@@ -167,7 +167,7 @@ int		main(int argc, char **argv)
 	printf("\033[01;33m=====================VALID=FILE=====================\033[0m\n");
 //------------> SAVE THE SHAPES
 	raw_2d = ft_file_save(fd, argv);
-	ptr_tetro = ft_process_raw(raw_2d);
+	struct_tetro = ft_process_raw(raw_2d);
 	i = 0;
 	while (raw_2d[i])
 		i++;
@@ -176,9 +176,19 @@ int		main(int argc, char **argv)
 // x_top = ft_board_size(i)
 // y_top = ft_board_size(i)
 	printf("board starting size is: %dx%d\n", ft_board_size(i), ft_board_size(i));
-//	ft_putnbr(ptr_tetro->x[0]);
-	printf("tetri nr.1 (x,y):\n%d,%d\t%d,%d\t%d,%d\t%d,%d\n", ptr_tetro->x[0], ptr_tetro->y[0], ptr_tetro->x[1], ptr_tetro->y[1], ptr_tetro->x[2], ptr_tetro->y[2], ptr_tetro->x[3], ptr_tetro->y[3]);
-//	ft_putnbr(ptr_tetro->y[0]);
+	printf("tetri nr.1 (x,y):\n%d,%d\t%d,%d\t%d,%d\t%d,%d\n", struct_tetro->x[0], struct_tetro->y[0], struct_tetro->x[1], struct_tetro->y[1], struct_tetro->x[2], struct_tetro->y[2], struct_tetro->x[3], struct_tetro->y[3]);
+	printf("(%d)", ft_move_coordinate(&struct_tetro, -2, 0));
+	printf("tetri after move (x,y):\n%d,%d\t%d,%d\t%d,%d\t%d,%d\n", struct_tetro->x[0], struct_tetro->y[0], struct_tetro->x[1], struct_tetro->y[1], struct_tetro->x[2], struct_tetro->y[2], struct_tetro->x[3], struct_tetro->y[3]);
+
+//	ft_putnbr(struct_tetro->x[0]);
+/*	while (struct_tetro)
+	{
+		ft_putchar('[');
+		printf("tetri nr.1 (x,y):\n%d,%d\t%d,%d\t%d,%d\t%d,%d\n", struct_tetro->x[0], struct_tetro->y[0], struct_tetro->x[1], struct_tetro->y[1], struct_tetro->x[2], struct_tetro->y[2], struct_tetro->x[3], struct_tetro->y[3]);
+		ft_putchar(']');
+		struct_tetro = struct_tetro->next;
+	}*/
+//	ft_putnbr(struct_tetro->y[0]);
 // -----------> NOW GO FOR SOLVER...
 // board starting size = sqrt(# of tetrominoes * 4 characters per tetromino)
 // TEST FOR LEAKS

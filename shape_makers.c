@@ -6,13 +6,13 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 13:30:41 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/08/17 17:35:38 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/08/18 14:39:50 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-size_t	ft_file_size(fd)
+size_t	ft_file_size(int fd)
 {
 	size_t	read_ret;
 	size_t	size;
@@ -22,7 +22,6 @@ size_t	ft_file_size(fd)
 	read_ret = 0;
 	while ((read_ret = read(fd, ptr_useless, BUFF_SIZE)) > 0)
 			size += read_ret;
-
 	return (size);
 }
 
@@ -53,14 +52,14 @@ char	**ft_file_save(int fd, char **argv)
 
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
 	{
-		ft_putstr_fd("OPEN FAILED", 2);
+		ft_error(1);
 		return (NULL);
 	}
 	f_size = ft_file_size(fd);
 	file = ft_strnew(f_size);
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
 	{
-		ft_putstr_fd("OPEN FAILED", 2);
+		ft_error(1);
 		return (NULL);
 	}
 	read(fd, file, f_size);
