@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 12:30:12 by jraty             #+#    #+#             */
-/*   Updated: 2020/08/18 16:26:15 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/08/19 20:23:59 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 
 # define BUF_SIZE 21
 
+//decided to scrap grid struct for global grid size
+int	GRID_SIZE;
+
 typedef	struct		s_tetro
 {
 	char			*raw;
@@ -34,7 +37,19 @@ typedef	struct		s_tetro
 	struct s_tetro	*prev;
 }					t_tetro;
 
-int		ft_move_coordinate(t_tetro **tetro, int x, int y);
+typedef	struct		s_grid
+{
+	int				**matrix;
+	int				size;
+}					t_grid;
+
+int		**ft_flip_grid(t_tetro *tetro, int **grid);
+
+int		**ft_make_grid(int **grid);
+
+int		ft_board_size(int nb);
+
+int		ft_move_coordinate(t_tetro **tetro, int x, int y, int **grid);
 
 int		ft_error(int n);
 
