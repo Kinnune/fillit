@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 19:06:20 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/08/18 15:37:04 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/08/20 20:17:06 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ t_tetro	*new_tetro(char *tetro_string, t_tetro *previous, int i)
 	new->next = NULL;
 	new->prev = previous;
 	ft_set_coordinates(&new);
-	new->x_min = new->x[0];
-	new->y_min = new->y[0];
 	return (new);
 }
 

@@ -3,16 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+         #
+#    By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/06 16:20:49 by jraty             #+#    #+#              #
-#    Updated: 2020/08/18 12:51:12 by jraty            ###   ########.fr        #
+#    Updated: 2020/08/20 18:20:32 by ekinnune         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit.exe
 
-SRCS = tetri_validator.c shape_makers.c struct_processing.c
+SRCS = tetri_validator.c shape_makers.c struct_processing.c move_coordinates.c \
+		grid.c main.c
 
 OBJS = $(SRCS:.c=.o)
 

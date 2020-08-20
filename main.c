@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/19 19:03:58 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/08/19 22:47:07 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/08/20 19:52:01 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,8 @@ int		main(int argc, char **argv)
 	while (raw_2d[i])
 		i++;
 	printf("nbr of tetros: %d\n", i);
-	 i = ft_board_size(i);
+	GRID_SIZE = ft_board_size(i);
 //	testing of grid and move seems ok \/
-	GRID_SIZE = i;
 	grid = ft_make_grid(grid);
 	int x, y = 0;
 	while (grid[y])
@@ -62,17 +61,19 @@ int		main(int argc, char **argv)
 		y++;
 	}
 	ft_putchar('\n');
-	ft_move_coordinate(&struct_tetro, 5, 6, grid);
-	grid = ft_flip_grid(struct_tetro, grid);
-	printf("tetri nr.1 (x,y):\n%d,%d\t%d,%d\t%d,%d\t%d,%d\n", struct_tetro->x[0], struct_tetro->y[0], struct_tetro->x[1], struct_tetro->y[1], struct_tetro->x[2], struct_tetro->y[2], struct_tetro->x[3], struct_tetro->y[3]);
-
+//	printf("(%d)", ft_move_coordinate(&struct_tetro, 4, 3, grid));
+//	printf("tetri nr.1 (x,y):\n%d,%d\t%d,%d\t%d,%d\t%d,%d\n", struct_tetro->x[0], struct_tetro->y[0], struct_tetro->x[1], struct_tetro->y[1], struct_tetro->x[2], struct_tetro->y[2], struct_tetro->x[3], struct_tetro->y[3]);
+//	grid = ft_flip_grid(struct_tetro, rid);
+	ft_place_block(struct_tetro, grid);
+	char **grid_abc;
+	grid_abc = ft_abc_grid(struct_tetro);
 	y = 0;
-	while (grid[y])
+	while (grid_abc[y])
 	{
 		x = 0;
 		while (x < GRID_SIZE)
 		{
-			ft_putnbr(grid[y][x]);
+			ft_putchar(grid_abc[y][x]);
 			x++;
 		}
 		ft_putchar('\n');

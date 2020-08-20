@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 14:46:37 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/08/19 22:58:44 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/08/20 19:28:50 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,26 +61,6 @@ int ft_validate_coordinate(t_tetro *tetro, int **grid)
 	return (1);
 }
 
-void	ft_x_and_y_count(t_tetro *tetro, int x, int y,int *x_c, int *y_c)
-{
-	if (x >= 0)
-	{
-		if (x > *tetro->x)
-			*x_c = *tetro->x - x;
-		else
-			*x_c = x - *tetro->x;
-	}
-	if (y >= 0)
-	{
-		if (y == 0)
-			*y_c = y;
-		else if (*tetro->y < y)
-			*y_c = *tetro->y % y;
-		else
-			*y_c = y - *tetro->y;
-	}
-}
-
 /*
 **	Some really confusing syntax here might be faster this way
 **	     	   *((*tetro)->x + i)
@@ -109,10 +89,59 @@ int	ft_move_coordinate(t_tetro **tetro, int x, int y, int **grid)
 		*((*tetro)->y + i) += y_count;
 		i++;
 	}
-	if (ft_validate_coordinate(*tetro, grid))
+	if (!(ft_validate_coordinate(*tetro, grid)))
 	{
-		return (1);
+//		ft_move_coordinate(tetro, x_save, y_save, grid);
+		return (0);
 	}
-	ft_move_coordinate(tetro, x_save, y_save, grid);
-	return (0);
+	return (1);
+}
+
+int	**ft_place_block(t_tetro *s_tetro, int **grid)
+{
+	int x = 0;
+	int y = 0;
+	int i = 0;
+	t_tetro *head;
+
+	head = s_tetro;
+	while (s_tetro != NULL)
+	{
+		printf("loop#%d x = %d y = %d\n", i, x , y);
+		if (ft_move_coordinate(&s_tetro, x, y, grid))
+		{
+			ft_flip_grid(s_tetro, grid);
+			s_tetro = s_tetro->next;
+			x = 0;
+			y = 0;
+		}
+		else
+		{
+					ft_puterr(1);
+
+			x++;
+		}
+		
+		ft_puterr(2);
+		if (x == GRID_SIZE)
+		{
+			x = 0;
+			y++;
+		}
+		
+		ft_puterr(3);
+		if (y == GRID_SIZE)
+		{
+			
+		ft_puterr(4);
+			GRID_SIZE++;
+			grid = ft_make_grid(grid);
+			s_tetro = head;
+			y = 0;
+		}
+		
+		ft_puterr(5);
+		i++;
+	}
+	return (grid);
 }

@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 12:30:12 by jraty             #+#    #+#             */
-/*   Updated: 2020/08/19 20:23:59 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/08/20 20:16:42 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,17 @@ typedef	struct		s_tetro
 {
 	char			*raw;
 	int				letter;
-	int				x_min;
-	int				y_min;
 	int				x[4];
 	int				y[4];
 	struct s_tetro	*next;
 	struct s_tetro	*prev;
 }					t_tetro;
 
-typedef	struct		s_grid
-{
-	int				**matrix;
-	int				size;
-}					t_grid;
+char	**ft_abc_grid(t_tetro *list);
+
+int		**ft_reset_grid(int **grid);
+
+int		**ft_place_block(t_tetro *s_tetro, int **grid);
 
 int		**ft_flip_grid(t_tetro *tetro, int **grid);
 

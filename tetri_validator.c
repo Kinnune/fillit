@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   tetri_validator.c                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/06 16:32:56 by jraty             #+#    #+#             */
-/*   Updated: 2020/08/17 20:09:18 by ekinnune         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "fillit.h"
 
@@ -37,10 +26,11 @@ int		ft_error(int n)
 }
 
 // GET BOARD SIZE (sq x sq)
-/*int		ft_sqrt_roundup(int nb)
+int		ft_board_size(int nb)
 {
 	int		sq;
 
+	nb *= 4;
 	if (nb == 0 || nb == 1)
 		return (nb);
 	sq = 1;
@@ -51,7 +41,7 @@ int		ft_error(int n)
 		sq += 1;
 	}
 	return (sq);
-}*/
+}
 
 // CHECKER 1
 
@@ -137,40 +127,4 @@ int		ft_checker2(int fd)
 	if (conn != 6 && conn != 8)
 		return (ft_error(7));
 	return (1);
-}
-
-int		main(int argc, char **argv)
-{
-	int		fd;
-	char	**raw_2d;
-	t_tetro	*ptr_tetro;
-	if (argc != 2)
-		return (ft_error(0));
-	if ((fd = open(argv[1], O_RDONLY)) == -1)
-		return (ft_error(1));
-		printf("%d", fd);
-	if (ft_checker1(fd) == 0)
-		return (0);
-// NO NEED TO CLOSE IT "MANUALLY" ??
-// Side comment on this /\ seems like closing the file manually caused some problems
-// and just opening the file again resetted the file offset which is what I tought close
-// and reopen would do
-//	if (close(fd) == -1)
-//		return (ft_error(9));
-	if ((fd = open(argv[1], O_RDONLY)) == -1)
-		return (ft_error(1));
-	printf("%d", fd);
-	if (ft_checker2(fd) == 0)
-		return (0);
-	printf("\033[01;33m=====================VALID=FILE=====================\033[0m\n");
-//------------> SAVE THE SHAPES
-	raw_2d = ft_file_save(fd, argv);
-	ptr_tetro = ft_process_raw(raw_2d);
-	ft_putnbr(ptr_tetro->x[0]);
-	ft_putnbr(ptr_tetro->y[0]);
-// -----------> NOW GO FOR SOLVER...
-// board starting size = sqrt(# of tetrominoes * 4 characters per tetromino)
-// TEST FOR LEAKS
-//	while (1);
-	return (0);
 }
