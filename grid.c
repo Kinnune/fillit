@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/19 16:47:05 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/08/20 18:57:32 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/08/21 15:47:59 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ int	**ft_flip_grid(t_tetro *tetro, int **grid)
 	i = 0;
 	while (i < 4)
 	{
-		grid[tetro->y[i]][tetro->x[i]] = 1;
+		if (grid[tetro->y[i]][tetro->x[i]] == 0)
+			grid[tetro->y[i]][tetro->x[i]] = 1;
+		else
+			grid[tetro->y[i]][tetro->x[i]] = 0;
 		i++;
 	}
 	return (grid);

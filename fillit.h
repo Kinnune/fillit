@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 12:30:12 by jraty             #+#    #+#             */
-/*   Updated: 2020/08/20 20:16:42 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/08/21 15:13:16 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,17 @@ typedef	struct		s_tetro
 	struct s_tetro	*prev;
 }					t_tetro;
 
+//int		ft_safe_move(t_tetro **tetro, int x_max, int y_max, int x, int y);
+
+int	ft_move_1(t_tetro **tetro, int **grid);
+
+int		ft_judge_grid(int **grid);
+
 char	**ft_abc_grid(t_tetro *list);
 
 int		**ft_reset_grid(int **grid);
 
-int		**ft_place_block(t_tetro *s_tetro, int **grid);
+int		**ft_generate_answer(t_tetro *s_tetro, int **grid);
 
 int		**ft_flip_grid(t_tetro *tetro, int **grid);
 

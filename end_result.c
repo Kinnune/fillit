@@ -51,3 +51,26 @@ char **ft_abc_grid(t_tetro *tetro)
 	}
 	return (grid);
 }
+
+int	ft_judge_grid(int **grid)
+{
+	int y;
+	int x;
+	int score;
+
+	y = 0;
+	x = 0;
+	score = 0;
+	while (y < GRID_SIZE)
+	{
+		x = 0;
+		while (x < GRID_SIZE)
+		{
+			if (grid[y][x] == 0)
+				score += y + x;
+			x++;
+		}
+		y++;
+	}
+	return (score);
+}

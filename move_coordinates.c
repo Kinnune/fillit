@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 14:46:37 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/08/20 19:28:50 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/08/21 15:43:00 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,83 @@ int	ft_move_coordinate(t_tetro **tetro, int x, int y, int **grid)
 	}
 	if (!(ft_validate_coordinate(*tetro, grid)))
 	{
-//		ft_move_coordinate(tetro, x_save, y_save, grid);
 		return (0);
 	}
 	return (1);
+}
+
+int	ft_move_1(t_tetro **tetro, int **grid)
+{
+	int x_origin;
+	int y_origin;
+	int i;
+
+	i = 1;
+	x_origin = *(*tetro)->x;
+	y_origin = *(*tetro)->y;
+	while ((*tetro)->y[0] < GRID_SIZE)
+	{
+		if (ft_move_coordinate(tetro, (*tetro)->x[0] + i, (*tetro)->y[0], grid))
+			return (1);
+		else
+		{
+			i++;
+		}
+		if ((*tetro)->x[0] + i >= GRID_SIZE)
+		{
+			(*tetro)->x[0] = 0;
+			(*tetro)->y[0]++;
+			i = 0;
+		}
+	}
+	ft_move_coordinate(tetro, x_origin, y_origin, grid);
+	return (0);
+}
+
+int	**ft_generate_answer(t_tetro *s_tetro, int **grid)
+{
+	int x = 0;
+	int y = 0;
+	int i = 0;
+	t_tetro *head;
+
+	head = s_tetro;
+	while (s_tetro != NULL)
+	{
+//		printf("loop#%d x = %d y = %d\n", i, x , y);
+		if (ft_move_coordinate(&s_tetro, x, y, grid))
+		{
+			ft_flip_grid(s_tetro, grid);
+			s_tetro = s_tetro->next;
+			x = 0;
+			y = 0;
+		}
+		else
+		{
+			x++;
+			if (x == GRID_SIZE)
+			{
+				x = 0;
+				y++;
+			}
+			if (y == GRID_SIZE)
+			{
+				if (ft_move_1(&s_tetro, grid))
+				{
+					ft_generate_answer(s_tetro->next, grid);
+				}
+				else
+				{
+					GRID_SIZE++;
+					grid = ft_make_grid(grid);
+					s_tetro = head;
+				}
+			}
+		}
+		i++;
+	}
+	ft_generate_answer(head, grid);
+	return (grid);
 }
 
 int	**ft_place_block(t_tetro *s_tetro, int **grid)
@@ -117,30 +190,20 @@ int	**ft_place_block(t_tetro *s_tetro, int **grid)
 		}
 		else
 		{
-					ft_puterr(1);
-
 			x++;
 		}
-		
-		ft_puterr(2);
 		if (x == GRID_SIZE)
 		{
 			x = 0;
 			y++;
 		}
-		
-		ft_puterr(3);
 		if (y == GRID_SIZE)
 		{
-			
-		ft_puterr(4);
 			GRID_SIZE++;
 			grid = ft_make_grid(grid);
 			s_tetro = head;
 			y = 0;
 		}
-		
-		ft_puterr(5);
 		i++;
 	}
 	return (grid);

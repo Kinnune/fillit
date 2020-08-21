@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/19 19:03:58 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/08/20 19:52:01 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/08/21 15:49:08 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,30 @@ int		main(int argc, char **argv)
 //	printf("(%d)", ft_move_coordinate(&struct_tetro, 4, 3, grid));
 //	printf("tetri nr.1 (x,y):\n%d,%d\t%d,%d\t%d,%d\t%d,%d\n", struct_tetro->x[0], struct_tetro->y[0], struct_tetro->x[1], struct_tetro->y[1], struct_tetro->x[2], struct_tetro->y[2], struct_tetro->x[3], struct_tetro->y[3]);
 //	grid = ft_flip_grid(struct_tetro, rid);
-	ft_place_block(struct_tetro, grid);
+//	grid = ft_generate_answer(struct_tetro, grid);
+//	while (struct_tetro->next)
+//	{
+//		ft_flip_grid(struct_tetro, grid);
+//		struct_tetro = struct_tetro->next;
+//	}
+	printf("\nscore = %d\n", ft_judge_grid(grid));
 	char **grid_abc;
-	grid_abc = ft_abc_grid(struct_tetro);
+//	ft_move_1(&struct_tetro->prev, grid);
 	y = 0;
-	while (grid_abc[y])
+	while (grid[y])
+	{
+		x = 0;
+		while (x < GRID_SIZE)
+		{
+			ft_putnbr(grid[y][x]);
+			x++;
+		}
+		ft_putchar('\n');
+		y++;
+	}
+//	grid_abc = ft_abc_grid(struct_tetro);
+	y = 0;
+/*	while (grid_abc[y])
 	{
 		x = 0;
 		while (x < GRID_SIZE)
@@ -78,7 +97,7 @@ int		main(int argc, char **argv)
 		}
 		ft_putchar('\n');
 		y++;
-	}
+	}*/
 //------------> BOARD STARTING SIZE
 // x_top = ft_board_size(i)
 // y_top = ft_board_size(i)
