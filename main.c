@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/19 19:03:58 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/08/21 15:49:08 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/08/21 21:44:53 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,13 @@ int		main(int argc, char **argv)
 	printf("\nscore = %d\n", ft_judge_grid(grid));
 	char **grid_abc;
 //	ft_move_1(&struct_tetro->prev, grid);
+	struct_tetro = ft_reset_coordinates(&struct_tetro, grid);
+	printf("(%s)", struct_tetro->prev);
+	while (struct_tetro)
+	{
+		ft_flip_grid(struct_tetro, grid);
+		struct_tetro = struct_tetro->next;
+	}
 	y = 0;
 	while (grid[y])
 	{

@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 12:30:12 by jraty             #+#    #+#             */
-/*   Updated: 2020/08/21 15:13:16 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/08/21 21:45:03 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ typedef	struct		s_tetro
 
 //int		ft_safe_move(t_tetro **tetro, int x_max, int y_max, int x, int y);
 
-int	ft_move_1(t_tetro **tetro, int **grid);
+t_tetro	*ft_reset_coordinates(t_tetro **tetro, int **grid);
+
+int		ft_move_1(t_tetro **tetro, int **grid);
 
 int		ft_judge_grid(int **grid);
 

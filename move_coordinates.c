@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 14:46:37 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/08/21 15:43:00 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/08/21 21:46:42 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,12 @@ int	ft_move_coordinate(t_tetro **tetro, int x, int y, int **grid)
 		*((*tetro)->y + i) += y_count;
 		i++;
 	}
-	if (!(ft_validate_coordinate(*tetro, grid)))
+	if (grid)
 	{
-		return (0);
+		if (!(ft_validate_coordinate(*tetro, grid)))
+		{
+			return (0);
+		}
 	}
 	return (1);
 }
@@ -207,4 +210,39 @@ int	**ft_place_block(t_tetro *s_tetro, int **grid)
 		i++;
 	}
 	return (grid);
+}
+
+t_tetro	*ft_reset_coordinates(t_tetro **tetro, int **grid)
+{
+	t_tetro *head;
+	while ((*tetro)->prev)
+	{
+		(*tetro) = (*tetro)->prev;
+	}
+	head = *tetro;
+	while((*tetro))
+	{
+		ft_move_coordinate(tetro, 0, 0, grid);
+		(*tetro) = (*tetro)->next;
+	}
+	return (head);
+}
+
+void	ft_recursive(t_tetro **s_tetro, int **grid)
+{
+	if (!*s_tetro)
+		return ;
+	while (!ft_validate_coordinate(*s_tetro, grid))
+	{
+		ft_move_1(s_tetro, grid);
+		if (*(*s_tetro)->y >= GRID_SIZE)
+		{
+			GRID_SIZE++;
+			grid = ft_make_grid(grid);
+			ft_reset_coordinates(s_tetro, grid);
+		}
+	}
+		grid = ft_flip_grid(*s_tetro, grid);
+	ft_recursive(&(*s_tetro)->next, grid);
+
 }

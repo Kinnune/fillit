@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 13:30:41 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/08/21 16:14:11 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/08/21 21:33:56 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,19 +65,3 @@ char	**ft_file_save(int fd, char **argv)
 	read(fd, file, f_size);
 	return (ft_single_shapes(file));
 }
-
-palkki x menee yst yli sit lathaa kattoo takas pai palkkii x - 1 flipataa se pois
-lahetaa iteroimaa sita eteepai ja jos 
-seki failaa ni menaa siita takasippai viel ja sit jos paadytaa lista alkuu 
-ja seki failaa ni suurennetaa gridi ja alotetaa koko setti alust
-eli jos move_1 failaa kumitetaan se jolla haa on yrittany liikuttaa gridist pois
-jolloin siirrytaan "move_1(tetro->prev)" mut ei ehk nain vaan recursiivisesti
-ft_generate_answer 
-
-aseta kaikki palkit vasempaan ylakulmaan. muotoile generate funktio niin
-etta se yrittaa ekaks move ykkosta niin kauan enneko palkki menee paikoilleen
-(jos nain kay han kutsuu itseaan seuraavalla palikalla)
-tai se toteaa etta palkin y[0] >= gridsize niin kumita edellinen palkki ja kutsu funktio
-uusiksi edellisella palkilla.
-jos funktioon tulee palkki = null siina kohtaa osataan lahtea suurentamaan gridia
-ja jos ollaan kutsumassa funktiota palkki->next joka olis null niin vastaus on valmis
