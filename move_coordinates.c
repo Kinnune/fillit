@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 14:46:37 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/08/21 21:46:42 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/08/22 17:42:55 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,24 +103,28 @@ int	ft_move_1(t_tetro **tetro, int **grid)
 {
 	int x_origin;
 	int y_origin;
-	int i;
+	int	line;
+	int x_place;
 
-	i = 1;
+//	not sure if "line = *(*tetro)->y" or 0 better
+	line = 0;
 	x_origin = *(*tetro)->x;
+	x_place = x_origin;
 	y_origin = *(*tetro)->y;
-	while ((*tetro)->y[0] < GRID_SIZE)
+	while (line < GRID_SIZE)
 	{
-		if (ft_move_coordinate(tetro, (*tetro)->x[0] + i, (*tetro)->y[0], grid))
+		x_place++;
+		if (ft_move_coordinate(tetro, x_place, (*tetro)->y[0] + line, grid))
+		{
 			return (1);
-		else
-		{
-			i++;
 		}
-		if ((*tetro)->x[0] + i >= GRID_SIZE)
+		if (x_place >= GRID_SIZE)
 		{
-			(*tetro)->x[0] = 0;
-			(*tetro)->y[0]++;
-			i = 0;
+			if (ft_move_coordinate(tetro, 0, (*tetro)->y[0] + 1, grid))
+			{
+				return (1);
+			}
+			x_place = 0;
 		}
 	}
 	ft_move_coordinate(tetro, x_origin, y_origin, grid);

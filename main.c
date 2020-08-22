@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/19 19:03:58 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/08/21 21:44:53 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/08/22 17:43:11 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int		main(int argc, char **argv)
 	int		**grid;
 	t_tetro	*struct_tetro;
 	int		i;
+
+	grid = NULL;
 	if (argc != 2)
 		return (ft_error(0));
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
@@ -75,12 +77,20 @@ int		main(int argc, char **argv)
 //	ft_move_1(&struct_tetro->prev, grid);
 	struct_tetro = ft_reset_coordinates(&struct_tetro, grid);
 	printf("(%s)", struct_tetro->prev);
+	t_tetro *head = struct_tetro;
 	while (struct_tetro)
 	{
 		ft_flip_grid(struct_tetro, grid);
 		struct_tetro = struct_tetro->next;
 	}
 	y = 0;
+	ft_move_1(&head->next->next->next->next->next, grid);
+	grid = ft_flip_grid(head->next->next->next->next->next, grid);
+	ft_move_1(&head->next, grid);
+	grid = ft_flip_grid(head->next, grid);
+	ft_move_1(&head->next, grid);
+	grid = ft_flip_grid(head->next, grid);
+	
 	while (grid[y])
 	{
 		x = 0;
