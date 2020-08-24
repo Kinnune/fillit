@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/19 19:03:58 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/08/22 17:43:11 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/08/23 23:15:08 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,19 +78,8 @@ int		main(int argc, char **argv)
 	struct_tetro = ft_reset_coordinates(&struct_tetro, grid);
 	printf("(%s)", struct_tetro->prev);
 	t_tetro *head = struct_tetro;
-	while (struct_tetro)
-	{
-		ft_flip_grid(struct_tetro, grid);
-		struct_tetro = struct_tetro->next;
-	}
-	y = 0;
-	ft_move_1(&head->next->next->next->next->next, grid);
-	grid = ft_flip_grid(head->next->next->next->next->next, grid);
-	ft_move_1(&head->next, grid);
-	grid = ft_flip_grid(head->next, grid);
-	ft_move_1(&head->next, grid);
-	grid = ft_flip_grid(head->next, grid);
-	
+	ft_move_1(&head, grid);
+	ft_flip_grid(head, grid);
 	while (grid[y])
 	{
 		x = 0;
