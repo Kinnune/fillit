@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/19 19:03:58 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/08/23 23:15:08 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/08/24 13:19:56 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,21 @@ int		main(int argc, char **argv)
 	char **grid_abc;
 //	ft_move_1(&struct_tetro->prev, grid);
 	struct_tetro = ft_reset_coordinates(&struct_tetro, grid);
-	printf("(%s)", struct_tetro->prev);
 	t_tetro *head = struct_tetro;
-	ft_move_1(&head, grid);
-	ft_flip_grid(head, grid);
+	y = 0;
+while (head)
+{
+	printf("(%d)", head->x[0]);
+	printf("(%d)", head->x[1]);
+	printf("(%d)", head->x[2]);
+	printf("(%d)\n", head->x[3]);
+	printf("(%d)", head->y[0]);
+	printf("(%d)", head->y[1]);
+	printf("(%d)", head->y[2]);
+	printf("(%d)\n", head->y[3]);
+	head = head->next;
+}
+	ft_recursive(&struct_tetro, grid);
 	while (grid[y])
 	{
 		x = 0;
@@ -91,9 +102,9 @@ int		main(int argc, char **argv)
 		ft_putchar('\n');
 		y++;
 	}
-//	grid_abc = ft_abc_grid(struct_tetro);
+	grid_abc = ft_abc_grid(struct_tetro);
 	y = 0;
-/*	while (grid_abc[y])
+	while (grid_abc[y])
 	{
 		x = 0;
 		while (x < GRID_SIZE)
@@ -103,7 +114,8 @@ int		main(int argc, char **argv)
 		}
 		ft_putchar('\n');
 		y++;
-	}*/
+	}
+
 //------------> BOARD STARTING SIZE
 // x_top = ft_board_size(i)
 // y_top = ft_board_size(i)
