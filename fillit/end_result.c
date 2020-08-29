@@ -12,20 +12,21 @@
 
 #include "fillit.h"
 
-char **ft_abc_grid(t_tetro *tetro)
+//	11 lines to shave
+char **ft_abc_grid(t_tetro *tetro, int grid_size)
 {
 	int	size;
 	char **grid;
 	int	i;
 
 	i = 0;
-	size = GRID_SIZE;
+	size = grid_size;
 	grid = ft_memalloc(sizeof(char *)* (size + 1));
 	grid[size] = NULL;
 	while (size)
 	{
 		size--;
-		grid[size] = ft_strnew(GRID_SIZE);
+		grid[size] = ft_strnew(grid_size);
 	}
 	while (tetro)
 	{
@@ -41,7 +42,7 @@ char **ft_abc_grid(t_tetro *tetro)
 	while (grid[size])
 	{
 		i = 0;
-		while (i < GRID_SIZE)
+		while (i < grid_size)
 		{
 			if (!grid[size][i])
 				grid[size][i] = '.';
@@ -52,25 +53,23 @@ char **ft_abc_grid(t_tetro *tetro)
 	return (grid);
 }
 
-int	ft_judge_grid(int **grid)
+void	ft_print_grid_abc(t_tetro *struct_tetro, int grid_size)
 {
-	int y;
-	int x;
-	int score;
+	int		y;
+	int		x;
+	char	**grid_abc;
 
 	y = 0;
-	x = 0;
-	score = 0;
-	while (y < GRID_SIZE)
+	grid_abc = ft_abc_grid(struct_tetro, grid_size);
+	while (grid_abc[y])
 	{
 		x = 0;
-		while (x < GRID_SIZE)
+		while (x < grid_size)
 		{
-			if (grid[y][x] == 0)
-				score += y + x;
+			ft_putchar(grid_abc[y][x]);
 			x++;
 		}
+		ft_putchar('\n');
 		y++;
 	}
-	return (score);
 }

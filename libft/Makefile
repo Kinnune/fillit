@@ -6,13 +6,14 @@
 #    By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/01 10:49:47 by ekinnune          #+#    #+#              #
-#    Updated: 2020/08/16 14:19:26 by ekinnune         ###   ########.fr        #
+#    Updated: 2020/08/28 18:04:06 by ekinnune         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-FUNCTIONS = get_next_line.c \
+FUNCTIONS = ft_file_size.c \
+			get_next_line.c \
 			ft_free2d.c \
 			ft_puterr.c \
 			ft_count_words.c \

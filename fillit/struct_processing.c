@@ -6,12 +6,28 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 19:06:20 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/08/20 20:17:06 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/08/28 20:50:28 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
+size_t	ft_tetro_count(t_tetro *struct_tetro)
+{
+	size_t count;
+
+	count = 0;
+	while (struct_tetro->prev)
+	{
+		struct_tetro = struct_tetro->prev;
+	}
+	while (struct_tetro)
+	{
+		struct_tetro = struct_tetro->next;
+		count++;
+	}
+	return (count);
+}
 void	ft_set_coordinates(t_tetro **element)
 {
 	char	*str;
@@ -40,7 +56,7 @@ void	ft_set_coordinates(t_tetro **element)
 	}
 }
 
-t_tetro	*new_tetro(char *tetro_string, t_tetro *previous, int i)
+t_tetro	*ft_new_tetro(char *tetro_string, t_tetro *previous, int i)
 {
 	t_tetro *new;
 
@@ -48,8 +64,11 @@ t_tetro	*new_tetro(char *tetro_string, t_tetro *previous, int i)
 	new->letter = i;
 	new->raw = tetro_string;
 	new->next = NULL;
-	new->prev = previous;
 	ft_set_coordinates(&new);
+	if (!previous)
+		new->prev = NULL;
+	else
+		new->prev = previous;
 	return (new);
 }
 
@@ -60,11 +79,11 @@ t_tetro	*ft_process_raw(char **raw)
 	size_t	i;
 
 	i = 0;
-	head = new_tetro(raw[i], NULL, i);
+	head = ft_new_tetro(raw[i], NULL, i);
 	copy = head;
 	while (raw[++i])
 	{
-		copy->next = new_tetro(raw[i], copy, i);
+		copy->next = ft_new_tetro(raw[i], copy, i);
 		copy = copy->next;
 	}
 	return (head);

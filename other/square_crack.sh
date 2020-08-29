@@ -1,0 +1,27 @@
+gcc -o fillit end_result.c move_coordinates.c shape_makers.c struct_processing.c tetri_validator.c main.c grid.c libft/libft.a
+./fillit test_files/square1.txt
+./fillit test_files/square2.txt
+./fillit test_files/square3.txt
+./fillit test_files/square4.txt
+./fillit test_files/square5.txt
+./fillit test_files/square6.txt
+./fillit test_files/square7.txt
+./fillit test_files/square8.txt
+./fillit test_files/square9.txt
+./fillit test_files/square10.txt
+./fillit test_files/square11.txt
+./fillit test_files/square12.txt
+./fillit test_files/square13.txt
+./fillit test_files/square14.txt
+./fillit test_files/square15.txt
+./fillit test_files/square16.txt
+./fillit test_files/square17.txt
+./fillit test_files/square18.txt
+./fillit test_files/square19.txt
+./fillit test_files/square20.txt
+./fillit test_files/square21.txt
+./fillit test_files/square22.txt
+./fillit test_files/square23.txt
+./fillit test_files/square24.txt
+./fillit test_files/square25.txt
+./fillit test_files/square26.txt
