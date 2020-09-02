@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 14:46:37 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/08/28 22:34:36 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/09/02 18:54:32 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 /*
 **				*((*tetro)->x + i)
-**	ALTERNATIVE: (*tetro)->x[i] 
+**	ALTERNATIVE:  (*tetro)->x[i] 
 */
 
+ 
+
+/*
 int ft_validate_coordinate(t_tetro *tetro, int **grid, int grid_size)
 {
 	int i;
@@ -29,12 +32,29 @@ int ft_validate_coordinate(t_tetro *tetro, int **grid, int grid_size)
 		{
 			return (0);
 		}
+		if (*(*(grid + *(tetro->y + i)) + *(tetro->x + i)) == 1)
+		{
+			return (0);
+		}
 		i++;
 	}
+	return (1);
+}
+*/
+
+int ft_validate_coordinate(t_tetro *tetro, int **grid, int grid_size)
+{
+	int i;
+
 	i = 0;
 	while (i < 4)
 	{
-		if (grid[*(tetro->y + i)][*(tetro->x + i)] == 1)
+		if (tetro->y[i] < 0 || tetro->x[i] < 0
+			|| tetro->y[i] >= grid_size || tetro->x[i] >= grid_size)
+		{
+			return (0);
+		}
+		if (grid[tetro->y[i]][tetro->x[i]] == 1)
 		{
 			return (0);
 		}
@@ -43,88 +63,61 @@ int ft_validate_coordinate(t_tetro *tetro, int **grid, int grid_size)
 	return (1);
 }
 
+/*
+**	int i = 0;
+**	while (i < 4)
+**	{
+**		*((*tetro)->x + i) += x_count;
+**		*((*tetro)->y + i) += y_count;
+**		i++;
+**	}
+*/
+
 void	ft_move_coordinate(t_tetro **tetro, int x, int y, int **grid)
 {
-	int i;
 	int x_count;
 	int y_count;
 
-	i = 0;
 	x_count = x - *(*tetro)->x;
 	y_count = y - *(*tetro)->y;
-	while (i < 4)
-	{
-		*((*tetro)->x + i) += x_count;
-		*((*tetro)->y + i) += y_count;
-		i++;
-	}
+	*(*tetro)->x += x_count;
+	*((*tetro)->x + 1) += x_count;
+	*((*tetro)->x + 2) += x_count;
+	*((*tetro)->x + 3) += x_count;
+	*(*tetro)->y += y_count;
+	*((*tetro)->y + 1) += y_count;
+	*((*tetro)->y + 2) += y_count;
+	*((*tetro)->y + 3) += y_count;
 }
 
-t_tetro	*ft_reset_coordinates(t_tetro **tetro, int **grid)
-{
-	t_tetro *head;
+//30
 
-	while ((*tetro)->prev)
-	{
-		(*tetro) = (*tetro)->prev;
-	}
-	head = *tetro;
-	while((*tetro))
-	{
-		ft_move_coordinate(tetro,  -1, 0, grid);
-		(*tetro) = (*tetro)->next;
-	}
-	return (head);
-}
-
-int	ft_move_1(t_tetro **tetro, int **grid, int size)
+int		ft_iterative_solve(t_tetro **tetro, int **grid, int grid_size)
 {
-	while (*(*tetro)->y <= size)
+	int y;
+	int x;
+
+	y = 0;
+	x = 0;
+	while (*tetro)
 	{
-		ft_move_coordinate(tetro, *(*tetro)->x + 1, *(*tetro)->y, grid);
-		if (ft_validate_coordinate(*tetro, grid, size))
+		ft_move_coordinate(tetro, x, y, grid);
+		if (ft_validate_coordinate(*tetro, grid, grid_size) != 0)
 		{
-			return (1);
+			ft_flip_grid(*tetro, grid, grid_size);
+			ft_tetro_next(tetro, &x, &y);
 		}
-		if (*(*tetro)->x >= size)
+		else if (++x >= grid_size)
+			ft_start_new_line(&x, &y);
+		if (y >= grid_size && (*tetro)->prev == NULL)
 		{
-			ft_move_coordinate(tetro, 0, *(*tetro)->y + 1, grid);
-			if (ft_validate_coordinate(*tetro, grid, size))
-			{
-				return (1);
-			}
+			ft_grid_bigger(&grid_size, &x, &y);
+}
+		else if (y >= grid_size)
+		{
+			ft_tetro_prev(tetro, &x, &y);
+			ft_flip_grid(*tetro, grid, grid_size);
 		}
 	}
-	return (0);
-}
-
-int i = 0;
-
-
-void	ft_recursive(t_tetro **tetro, int **grid, int grid_size)
-{
-//printf("(%c)", 'A' + (*tetro)->letter);
-	ft_move_1(tetro, grid, grid_size);
-	if (ft_validate_coordinate(*tetro, grid, grid_size))
-	{
-ft_putstr("flip current\n");
-		ft_flip_grid(*tetro, grid);
-		if ((*tetro)->next)
-			ft_recursive(&(*tetro)->next, grid, grid_size);
-	}
-	else if (!(*tetro)->prev)
-	{
-		grid = ft_make_grid(grid, ++grid_size);
-		ft_move_coordinate(tetro, -1, 0, grid);
-		ft_recursive(tetro, grid, grid_size);
-	}
-	else
-	{
-
-		ft_move_coordinate(tetro, -1, 0, grid);
-ft_putstr("flip prev\n");
-		ft_flip_grid((*tetro)->prev, grid);
-		ft_recursive(&(*tetro)->prev, grid, grid_size);
-
-	}
+	return (grid_size);
 }

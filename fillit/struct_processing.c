@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 19:06:20 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/08/28 20:50:28 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/09/02 16:30:46 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ size_t	ft_tetro_count(t_tetro *struct_tetro)
 	}
 	return (count);
 }
+
 void	ft_set_coordinates(t_tetro **element)
 {
 	char	*str;

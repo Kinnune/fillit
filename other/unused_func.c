@@ -26,6 +26,8 @@ ft_putstr("flip prev\n");
 }
 */
 
+//*printf("(x,y):\n%d,%d\t%d,%d\t%d,%d\t%d,%d\n", tetro->x[0], tetro->y[0], tetro->x[1], tetro->y[1], tetro->x[2], tetro->y[2], tetro->x[3], tetro->y[3]);
+
 
 /*
 
@@ -37,13 +39,146 @@ start_time = (float)clock()/CLOCKS_PER_SEC;
 
 end_time = (float)clock()/CLOCKS_PER_SEC;
 
-time_elapsed = startTime - endTime;
+time_elapsed = start_time - end_time;
 
 printf("time elapsed = %.6f\n", time_elapsed);
 
 */
 
+/*char **ft_fill_abc(t_tetro *tetro, int size, char **grid)
+{
+	int i;
 
+	while (tetro)
+	{
+		while (i < 4)
+		{
+			grid[tetro->y[i]][tetro->x[i]] = 'A' + tetro->letter;
+			i++;
+		}
+		tetro = tetro->next;
+	}
+	size = 0;
+	while (grid[size])
+	{
+		i = 0;
+		while (i < size)
+		{
+			if (!grid[size][i])
+				grid[size][i] = '.';
+			i++;
+		}
+		size++;
+	}
+	return (grid);
+}
+char **ft_abc_grid(t_tetro *tetro, int grid_size)
+{
+	int	size;
+	char **grid;
+	int	i;
+
+	i = 0;
+	size = grid_size;
+	grid = ft_memalloc(sizeof(char *)* (size + 1));
+	grid[size] = NULL;
+	while (size)
+	{
+		size--;
+		grid[size] = ft_strnew(grid_size);
+	}
+	return (ft_fill_abc(tetro, grid_size, grid));
+}
+
+void	ft_print_grid_abc(t_tetro *tetro, int grid_size)
+{
+	int		y;
+	int		x;
+	char	**grid_abc;
+
+	y = 0;
+	grid_abc = ft_abc_grid(tetro, grid_size);
+	while (grid_abc[y])
+	{
+		x = 0;
+		while (x < grid_size)
+		{
+			ft_putchar(grid_abc[y][x]);
+			x++;
+		}
+		ft_putchar('\n');
+		y++;
+	}
+}
+*/
+int	ft_move_1(t_tetro **tetro, int **grid, int size)
+{
+	while(*(*tetro)->y < size && !ft_validate_coordinate(*tetro, grid, size))
+	{
+		ft_move_coordinate(tetro, *(*tetro)->x + 1, *(*tetro)->y, grid);
+// THIS IS SEGFAULTING \/\/\/\/\/\/\/
+		if (*(*tetro)->y)
+		{
+ft_puterr(*(*tetro)->y);
+
+			ft_move_coordinate(tetro, 0, *(*tetro)->y + 1, grid);
+		}
+	}
+	return (0);
+}
+/*int	ft_move_1(t_tetro **tetro, int **grid, int size)
+{
+	while (*(*tetro)->y < size)
+	{
+		ft_move_coordinate(tetro, *(*tetro)->x + 1, *(*tetro)->y, grid);
+		if (ft_validate_coordinate(*tetro, grid, size))
+		{
+			return (1);
+		}
+		if (*(*tetro)->x >= size)
+		{
+			ft_move_coordinate(tetro, 0, *(*tetro)->y + 1, grid);
+			if (ft_validate_coordinate(*tetro, grid, size))
+			{
+				return (1);
+			}
+		}
+	}
+	return (0);
+}
+*/
+t_tetro	*ft_reset_coordinates(t_tetro **tetro, int **grid)
+{
+	t_tetro *head;
+
+	while ((*tetro)->prev)
+	{
+		(*tetro) = (*tetro)->prev;
+	}
+	head = *tetro;
+	while((*tetro))
+	{
+		ft_move_coordinate(tetro,  -1, 0, grid);
+		(*tetro) = (*tetro)->next;
+	}
+	return (head);
+}
+int		ft_in_range(t_tetro *tetro, int **grid, int grid_size)
+{
+	int i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (*(tetro->y + i) < 0 || *(tetro->x + i) < 0
+			|| *(tetro->y + i) >= grid_size || *(tetro->x + i) >= grid_size)
+		{
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
 int	**ft_reset_grid(int **grid, int grid_size)
 {
 	int x;
@@ -170,6 +305,48 @@ t_tetro	*ft_change_coordinates(t_tetro **tetro, char **board, int x_max,int y_ma
 	}
 }
 */
+
+size_t	ft_tetro_count(t_tetro *struct_tetro)
+{
+	size_t count;
+
+	count = 0;
+	while (struct_tetro->prev)
+	{
+		struct_tetro = struct_tetro->prev;
+	}
+	while (struct_tetro)
+	{
+		struct_tetro = struct_tetro->next;
+		count++;
+	}
+	return (count);
+}
+int	ft_get_biggest(t_tetro *head)
+{
+	int i;
+	int biggest;
+
+	biggest = 0;
+	while (head)
+	{
+		i = 0;
+		while (i < 4)
+		{
+			if (*(head->y + i) > biggest) 
+			{
+				biggest = *(head->y + i);
+			}
+			if (*(head->x + i) > biggest)
+			{
+				biggest = *(head->x + i);
+			}
+			i++;
+		}
+		head = head->next;
+	}
+	return (biggest + 1);
+}
 int	**ft_generate_answer(t_tetro *s_tetro, int **grid)
 {
 	int x = 0;
@@ -215,8 +392,30 @@ int	**ft_generate_answer(t_tetro *s_tetro, int **grid)
 	ft_generate_answer(head, grid);
 	return (grid);
 }
+//		ft_putstr("moved\n");
+//		ft_putstr("loop start\n");
+//			ft_putstr("flip current\n");
+//			ft_putstr("flipped\n");
+//			ft_putstr("x++\n");
+//			ft_putstr("x = 0; y++\n");
+//			ft_putstr("BIGGER\n");
+//			ft_putstr("tetro = prev\n");
+//	ft_putstr("END\n");
+//	struct_tetro = ft_reset_coordinates(&struct_tetro, grid);
+//---------------------------------------
+//	grid_size = ft_recursive(&struct_tetro, grid, grid_size);
+//	ft_place_block(&struct_tetro, grid, grid_size);
+//	ft_putnbr(ft_validate_coordinate(tetro, grid, grid_size));
+/*	while(ft_move_1(&head, grid, grid_size))
+	{
+		printf("(x,y):\n%d,%d\t%d,%d\t%d,%d\t%d,%d\n", head->x[0], head->y[0], head->x[1], head->y[1], head->x[2], head->y[2], head->x[3], head->y[3]);
+	}
+		printf("(x,y):\n%d,%d\t%d,%d\t%d,%d\t%d,%d\n", head->x[0], head->y[0], head->x[1], head->y[1], head->x[2], head->y[2], head->x[3], head->y[3]);
+*/
+
 /*
 /*
+
 void	ft_recursive(t_tetro **tetro, int **grid)
 {
 printf("%c (%d)\n", 'A' + (*tetro)->letter, i++);
@@ -298,6 +497,205 @@ ft_putstr("bigger!\n");
 	}	
 
 }
+/*
+int	**ft_place_block(t_tetro *s_tetro, int **grid, int grid_size)
+{
+	int x = 0;
+	int y = 0;
+	int i = 0;
+	t_tetro *head;
+
+	head = s_tetro;
+	while (s_tetro != NULL)
+	{
+		printf("loop#%d x = %d y = %d grid_size = %d\n", i, x , y, grid_size);
+ft_move_coordinate(&s_tetro, x, y, grid);
+		if (ft_validate_coordinate(s_tetro, grid, grid_size))
+		{
+			ft_flip_grid(s_tetro, grid, grid_size);
+			s_tetro = s_tetro->next;
+			x = 0;
+			y = 0;
+		}
+		else
+		{
+					ft_puterr(1);
+
+			x++;
+		}
+
+		ft_puterr(2);
+		if (x >= grid_size)
+		{
+		ft_puterr(6);
+
+			x = 0;
+			y++;
+		}
+
+		ft_puterr(3);
+		if (y >= grid_size)
+		{
+
+		ft_puterr(4);
+			grid_size++;
+			grid = ft_make_grid(grid, grid_size);
+			s_tetro = head;
+			y = 0;
+		}
+	}
+	return (grid);
+}
+*/
+/*int		ft_safe_move(t_tetro **tetro, int x_max, int y_max, int x, int y);
+
+int		ft_get_biggest(t_tetro *head);
+
+int		ft_in_range(t_tetro *tetro, int **grid, int grid_size);
+
+int		ft_side_len(t_tetro *tetro);
+
+
+
+int		ft_judge_grid(int **grid);
+
+
+
+
+
+int		**ft_generate_answer(t_tetro *s_tetro, int **grid);
+
+
+int		ft_move_1(t_tetro **tetro, int **grid, int size);
+
+t_tetro	*ft_reset_coordinates(t_tetro **tetro, int **grid);
+*/
+
+/*
+int	**ft_place_block(t_tetro *s_tetro, int **grid, int grid_size)
+{
+	int x = 0;
+	int y = 0;
+	int i = 0;
+	t_tetro *head;
+
+	head = s_tetro;
+	while (s_tetro != NULL)
+	{
+		printf("loop#%d x = %d y = %d grid_size = %d\n", i, x , y, grid_size);
+		ft_move_coordinate(&s_tetro, x, y, grid);
+		if (ft_validate_coordinate(s_tetro, grid, grid_size))
+		{
+			ft_flip_grid(s_tetro, grid, grid_size);
+			s_tetro = s_tetro->next;
+			x = 0;
+			y = 0;
+		}
+		else
+		{
+					ft_puterr(1);
+
+			x++;
+		}
+
+		ft_puterr(2);
+		if (x >= grid_size)
+		{
+		ft_puterr(6);
+
+			x = 0;
+			y++;
+		}
+
+		ft_puterr(3);
+		if (y >= grid_size)
+		{
+
+		ft_puterr(4);
+			grid_size++;
+			grid = ft_make_grid(grid, grid_size);
+			s_tetro = head;
+			y = 0;
+		}
+
+		ft_puterr(5);
+		i++;
+	}
+	return (grid);
+}
+
+
+int		ft_recursive(t_tetro **tetro, int **grid, int grid_size)
+{
+	while (*tetro)
+	{
+
+		if (ft_move_1(tetro, grid, grid_size))
+		{
+			ft_flip_grid(*tetro, grid, grid_size);
+			*tetro = (*tetro)->next;
+		}
+		else
+		{
+			if ((*tetro)->prev)
+			{
+				ft_move_coordinate(tetro, -1, 0, grid);
+				ft_flip_grid((*tetro)->prev, grid, grid_size);
+				*tetro = (*tetro)->prev;
+			}
+			else if ((*tetro)->letter == 0 && *(*tetro)->y >= grid_size)
+			{
+				ft_move_coordinate(tetro, -1, 0, grid);
+				grid = ft_make_grid(grid, ++grid_size);
+
+			}
+		}
+	}
+	return (grid_size);
+}
+
+
+
+//ft_putstr("flip prev\n");
+//ft_putstr("flip current\n");
+//printf("(%c)", 'A' + (*tetro)->letter);
+//printf("(%d)\n", i++);
+//ft_print_grid_abc(*tetro, grid_size);
+//ft_putchar('\n');
+//ft_putnbr(grid_size);
+
+
+void	ft_recursive(t_tetro **tetro, int **grid, int grid_size)
+{
+//printf("(%c)", 'A' + (*tetro)->letter);
+	ft_move_1(tetro, grid, grid_size);
+	if (ft_validate_coordinate(*tetro, grid, grid_size))
+	{
+ft_putstr("flip current\n");
+		ft_flip_grid(*tetro, grid, grid_size);
+		if ((*tetro)->next)
+			ft_recursive(&(*tetro)->next, grid, grid_size);
+	}
+	else if (!(*tetro)->prev)
+	{
+		grid = ft_make_grid(grid, ++grid_size);
+		ft_move_coordinate(tetro, -1, 0, grid);
+		ft_recursive(tetro, grid, grid_size);
+	}
+	else
+	{
+
+		ft_move_coordinate(tetro, -1, 0, grid);
+ft_putstr("flip prev\n");
+		ft_flip_grid((*tetro)->prev, grid, grid_size);
+		ft_recursive(&(*tetro)->prev, grid, grid_size);
+
+	}
+}
+*/
+
+
+//printf("(%c)", 'A' + (*tetro)->letter);
 
 
 int	ft_recursive(t_tetro **s_tetro, int **grid)
