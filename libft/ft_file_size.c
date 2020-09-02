@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_file_size.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/28 18:01:29 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/08/28 18:01:29 by ekinnune         ###   ########.fr       */
+/*   Created: 2020/09/02 23:54:25 by jraty             #+#    #+#             */
+/*   Updated: 2020/09/02 23:57:31 by jraty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ size_t	ft_file_size(int fd)
 	size = 0;
 	read_ret = 0;
 	while ((read_ret = read(fd, buffer, BUFF_SIZE)) > 0)
-			size += read_ret;
+		size += read_ret;
 	return (size);
 }
