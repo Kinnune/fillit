@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 12:30:12 by jraty             #+#    #+#             */
-/*   Updated: 2020/09/02 19:36:54 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/09/02 20:45:53 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	**ft_abc_grid(t_tetro *list, int grid_size);
 
 void	ft_print_grid_abc(t_tetro *tetro, int grid_size);
 
-int		**ft_flip_grid(t_tetro *tetro, int **grid, int grid_size);
+int		**ft_flip_grid(t_tetro *tetro, int **grid);
 
 int		**ft_bool_2d(int **grid, int size);
 
@@ -41,7 +41,7 @@ int		ft_board_size(int nb);
 
 int		ft_validate_coordinate(t_tetro *tetro, int **grid, int grid_size);
 
-void	ft_move_coordinate(t_tetro **tetro, int x, int y, int **grid);
+void	ft_move_coordinate(t_tetro **tetro, int x, int y);
 
 char	**ft_file_save(int fd, char **argv);
 

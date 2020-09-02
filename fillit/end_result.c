@@ -85,9 +85,7 @@ char **ft_abc_grid(t_tetro *tetro, int grid_size)
 {
 	int	size;
 	char **grid;
-	int	i;
 
-	i = 0;
 	size = grid_size;
 	grid = ft_memalloc(sizeof(char *)* (size + 1));
 	grid[size] = NULL;

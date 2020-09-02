@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 14:46:37 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/09/02 18:54:32 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/09/02 20:46:19 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int ft_validate_coordinate(t_tetro *tetro, int **grid, int grid_size)
 **	}
 */
 
-void	ft_move_coordinate(t_tetro **tetro, int x, int y, int **grid)
+void	ft_move_coordinate(t_tetro **tetro, int x, int y)
 {
 	int x_count;
 	int y_count;
@@ -101,10 +101,10 @@ int		ft_iterative_solve(t_tetro **tetro, int **grid, int grid_size)
 	x = 0;
 	while (*tetro)
 	{
-		ft_move_coordinate(tetro, x, y, grid);
+		ft_move_coordinate(tetro, x, y);
 		if (ft_validate_coordinate(*tetro, grid, grid_size) != 0)
 		{
-			ft_flip_grid(*tetro, grid, grid_size);
+			ft_flip_grid(*tetro, grid);
 			ft_tetro_next(tetro, &x, &y);
 		}
 		else if (++x >= grid_size)
@@ -116,7 +116,7 @@ int		ft_iterative_solve(t_tetro **tetro, int **grid, int grid_size)
 		else if (y >= grid_size)
 		{
 			ft_tetro_prev(tetro, &x, &y);
-			ft_flip_grid(*tetro, grid, grid_size);
+			ft_flip_grid(*tetro, grid);
 		}
 	}
 	return (grid_size);

@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/19 16:47:05 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/09/02 19:17:41 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/09/02 20:45:44 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 	return (grid);
 }*/
 
-int	**ft_flip_grid(t_tetro *tetro, int **grid, int grid_size)
+int	**ft_flip_grid(t_tetro *tetro, int **grid)
 {
 	int	i;
 

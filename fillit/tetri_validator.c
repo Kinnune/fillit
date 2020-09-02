@@ -41,6 +41,7 @@ int	ft_checker1(int fd)
 	int		i;
 	int		l;
 	
+	line = NULL;
 	l = 0;
 	if (!ft_reading(fd, &i, &l, line))
 		return (0);
