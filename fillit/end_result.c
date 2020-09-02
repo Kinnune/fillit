@@ -3,58 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   end_result.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/20 19:31:53 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/08/20 19:31:53 by ekinnune         ###   ########.fr       */
+/*   Created: 2020/09/03 00:31:13 by jraty             #+#    #+#             */
+/*   Updated: 2020/09/03 00:45:24 by jraty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-//	11 lines to shave
-/*
-
-char **ft_abc_grid(t_tetro *tetro, int grid_size)
-{
-	int	size;
-	char **grid;
-	int	i;
-
-	i = 0;
-	size = grid_size;
-	grid = ft_memalloc(sizeof(char *)* (size + 1));
-	grid[size] = NULL;
-	while (size)
-	{
-		size--;
-		grid[size] = ft_strnew(grid_size);
-	}
-	while (tetro)
-	{
-		while (i < 4)
-		{
-			grid[tetro->y[i]][tetro->x[i]] = 'A' + tetro->letter;
-			i++;
-		}
-		i = 0;
-		tetro = tetro->next;
-	}
-	size = 0;
-	while (grid[size])
-	{
-		i = 0;
-		while (i < grid_size)
-		{
-			if (!grid[size][i])
-				grid[size][i] = '.';
-			i++;
-		}
-		size++;
-	}
-	return (grid);
-}*/
-char **ft_fill_abc(t_tetro *tetro, char **grid, int size, int grid_size)
+char	**ft_fill_abc(t_tetro *tetro, char **grid, int sz, int gs)
 {
 	int i;
 
@@ -68,26 +26,27 @@ char **ft_fill_abc(t_tetro *tetro, char **grid, int size, int grid_size)
 		}
 		tetro = tetro->next;
 	}
-	while (grid[size])
+	while (grid[sz])
 	{
 		i = 0;
-		while (i < grid_size)
+		while (i < gs)
 		{
-			if (!grid[size][i])
-				grid[size][i] = '.';
+			if (!grid[sz][i])
+				grid[sz][i] = '.';
 			i++;
 		}
-		size++;
+		sz++;
 	}
 	return (grid);
 }
-char **ft_abc_grid(t_tetro *tetro, int grid_size)
+
+char	**ft_abc_grid(t_tetro *tetro, int grid_size)
 {
-	int	size;
-	char **grid;
+	int		size;
+	char	**grid;
 
 	size = grid_size;
-	grid = ft_memalloc(sizeof(char *)* (size + 1));
+	grid = ft_memalloc(sizeof(char *) * (size + 1));
 	grid[size] = NULL;
 	while (size)
 	{

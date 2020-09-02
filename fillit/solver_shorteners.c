@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solver_shorteners.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/02 17:53:41 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/09/02 17:53:41 by ekinnune         ###   ########.fr       */
+/*   Created: 2020/09/03 00:38:33 by jraty             #+#    #+#             */
+/*   Updated: 2020/09/03 00:41:05 by jraty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	ft_tetro_prev(t_tetro **tetro, int *x, int *y)
 	*tetro = (*tetro)->prev;
 	*x = *(*tetro)->x + 1;
 	*y = *(*tetro)->y;
-
 }
 
 void	ft_start_new_line(int *x, int *y)

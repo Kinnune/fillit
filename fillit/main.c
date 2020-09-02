@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekinnune <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/29 15:53:15 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/08/29 15:53:19 by ekinnune         ###   ########.fr       */
+/*   Created: 2020/09/03 00:24:25 by jraty             #+#    #+#             */
+/*   Updated: 2020/09/03 00:26:17 by jraty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-#include <time.h>
 
 int		main(int argc, char **argv)
 {
@@ -37,7 +35,7 @@ int		main(int argc, char **argv)
 	head = struct_tetro;
 	grid_size = ft_board_size(ft_tetro_count(struct_tetro));
 	grid = ft_bool_2d(grid, 64);
-	grid_size = ft_iterative_solve(&struct_tetro, grid, grid_size);
+	grid_size = ft_solver(&struct_tetro, grid, grid_size);
 	ft_print_grid_abc(head, grid_size);
 	return (0);
 }

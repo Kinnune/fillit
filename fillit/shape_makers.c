@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shape_makers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 13:30:41 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/08/28 18:06:13 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/09/03 00:28:54 by jraty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	**ft_single_shapes(char *f_content)
 	i = 0;
 	sub_i = 0;
 	shape_count = ft_count_words(f_content, '\n') / 4;
-	shape_list = (char **)malloc(sizeof(char *)* shape_count + 1);
+	shape_list = (char **)malloc(sizeof(char *) * shape_count + 1);
 	while (i < shape_count)
 	{
 		shape_list[i] = ft_strsub(f_content, sub_i, 20);

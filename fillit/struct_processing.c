@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_processing.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 19:06:20 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/09/02 16:30:46 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/09/03 00:28:32 by jraty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_set_coordinates(t_tetro **element)
 	i = 0;
 	block_count = 0;
 	str = (*element)->raw;
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] == '#')
 		{

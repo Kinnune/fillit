@@ -3,46 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   move_coordinates.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 14:46:37 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/09/02 20:46:19 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/09/03 00:47:37 by jraty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-/*
-**				*((*tetro)->x + i)
-**	ALTERNATIVE:  (*tetro)->x[i] 
-*/
-
- 
-
-/*
-int ft_validate_coordinate(t_tetro *tetro, int **grid, int grid_size)
-{
-	int i;
-
-	i = 0;
-	while (i < 4)
-	{
-		if (*(tetro->y + i) < 0 || *(tetro->x + i) < 0
-			|| *(tetro->y + i) >= grid_size || *(tetro->x + i) >= grid_size)
-		{
-			return (0);
-		}
-		if (*(*(grid + *(tetro->y + i)) + *(tetro->x + i)) == 1)
-		{
-			return (0);
-		}
-		i++;
-	}
-	return (1);
-}
-*/
-
-int ft_validate_coordinate(t_tetro *tetro, int **grid, int grid_size)
+int		ft_validate_coordinate(t_tetro *tetro, int **grid, int gs)
 {
 	int i;
 
@@ -50,7 +20,7 @@ int ft_validate_coordinate(t_tetro *tetro, int **grid, int grid_size)
 	while (i < 4)
 	{
 		if (tetro->y[i] < 0 || tetro->x[i] < 0
-			|| tetro->y[i] >= grid_size || tetro->x[i] >= grid_size)
+			|| tetro->y[i] >= gs || tetro->x[i] >= gs)
 		{
 			return (0);
 		}
@@ -62,16 +32,6 @@ int ft_validate_coordinate(t_tetro *tetro, int **grid, int grid_size)
 	}
 	return (1);
 }
-
-/*
-**	int i = 0;
-**	while (i < 4)
-**	{
-**		*((*tetro)->x + i) += x_count;
-**		*((*tetro)->y + i) += y_count;
-**		i++;
-**	}
-*/
 
 void	ft_move_coordinate(t_tetro **tetro, int x, int y)
 {
@@ -90,9 +50,7 @@ void	ft_move_coordinate(t_tetro **tetro, int x, int y)
 	*((*tetro)->y + 3) += y_count;
 }
 
-//30
-
-int		ft_iterative_solve(t_tetro **tetro, int **grid, int grid_size)
+int		ft_solver(t_tetro **tetro, int **grid, int grid_size)
 {
 	int y;
 	int x;
@@ -110,9 +68,7 @@ int		ft_iterative_solve(t_tetro **tetro, int **grid, int grid_size)
 		else if (++x >= grid_size)
 			ft_start_new_line(&x, &y);
 		if (y >= grid_size && (*tetro)->prev == NULL)
-		{
 			ft_grid_bigger(&grid_size, &x, &y);
-}
 		else if (y >= grid_size)
 		{
 			ft_tetro_prev(tetro, &x, &y);
