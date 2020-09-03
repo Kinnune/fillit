@@ -6,7 +6,7 @@
 /*   By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/03 00:21:02 by jraty             #+#    #+#             */
-/*   Updated: 2020/09/03 10:35:52 by jraty            ###   ########.fr       */
+/*   Updated: 2020/09/03 10:40:30 by jraty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	ft_checker2(int fd)
 			return (0);
 	}
 	if (ret == -1)
-			return (0);
+		return (0);
 	if (!(buf[i - 1] == 10 && buf[i] == 0))
 		return (0);
 	if (conn != 6 && conn != 8)
