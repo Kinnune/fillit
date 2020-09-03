@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tetri_validator.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/03 00:21:02 by jraty             #+#    #+#             */
-/*   Updated: 2020/09/03 06:04:24 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/09/03 10:35:52 by jraty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,7 @@ int	ft_checker2(int fd)
 	int		i;
 
 	if (!(buf = ft_strnew(21)))
-	{
 		return (0);
-	}
 	while ((ret = read(fd, buf, 21)) > 0)
 	{
 		i = 0;
@@ -75,6 +73,8 @@ int	ft_checker2(int fd)
 		if (hash != 4)
 			return (0);
 	}
+	if (ret == -1)
+			return (0);
 	if (!(buf[i - 1] == 10 && buf[i] == 0))
 		return (0);
 	if (conn != 6 && conn != 8)
