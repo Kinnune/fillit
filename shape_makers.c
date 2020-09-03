@@ -6,7 +6,7 @@
 /*   By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 13:30:41 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/09/03 11:24:20 by jraty            ###   ########.fr       */
+/*   Updated: 2020/09/03 11:48:40 by jraty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,14 @@ char	**ft_single_shapes(char *f_content)
 	{
 		if (!(shape_list[i] = ft_strsub(f_content, sub_i, 20)))
 		{
-			free(shape_list);
+			ft_free2d(shape_list);
 			return (NULL);
 		}
 		i++;
 		sub_i += 21;
 	}
 	shape_list[i] = 0;
+	free(f_content);
 	return (shape_list);
 }
 
