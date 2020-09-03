@@ -6,7 +6,7 @@
 /*   By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/03 00:21:02 by jraty             #+#    #+#             */
-/*   Updated: 2020/09/03 10:40:30 by jraty            ###   ########.fr       */
+/*   Updated: 2020/09/03 12:48:25 by jraty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,14 @@ int	ft_checker2(int fd)
 		hash = 0;
 		conn = 0;
 		i = ft_check_connect(i, buf, &hash, &conn);
+		if (conn != 6 && conn != 8)
+			return (0);
 		if (hash != 4)
 			return (0);
 	}
 	if (ret == -1)
 		return (0);
 	if (!(buf[i - 1] == 10 && buf[i] == 0))
-		return (0);
-	if (conn != 6 && conn != 8)
 		return (0);
 	free(buf);
 	return (1);
