@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   end_result.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/03 00:31:13 by jraty             #+#    #+#             */
-/*   Updated: 2020/09/03 05:40:05 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/09/03 12:10:05 by jraty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,5 @@ void	ft_print_grid_abc(t_tetro *struct_tetro, int grid_size)
 		ft_putchar('\n');
 		y++;
 	}
-	free(grid_abc);
+	ft_free2d(grid_abc);
 }
