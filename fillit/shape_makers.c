@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shape_makers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 13:30:41 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/09/03 05:54:33 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/09/03 09:47:26 by jraty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ char	**ft_single_shapes(char *f_content)
 	}
 	while (i < shape_count)
 	{
-		
 		if (!(shape_list[i] = ft_strsub(f_content, sub_i, 20)))
 		{
 			free(shape_list);
