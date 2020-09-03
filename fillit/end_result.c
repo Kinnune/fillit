@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   end_result.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+        */
+/*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/03 00:31:13 by jraty             #+#    #+#             */
-/*   Updated: 2020/09/03 00:45:24 by jraty            ###   ########.fr       */
+/*   Updated: 2020/09/03 05:40:05 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,19 @@ char	**ft_abc_grid(t_tetro *tetro, int grid_size)
 	char	**grid;
 
 	size = grid_size;
-	grid = ft_memalloc(sizeof(char *) * (size + 1));
+	if (!(grid = ft_memalloc(sizeof(char *) * (size + 1))))
+	{
+		return (NULL);
+	}
 	grid[size] = NULL;
 	while (size)
 	{
 		size--;
-		grid[size] = ft_strnew(grid_size);
+		if (!(grid[size] = ft_strnew(grid_size)))
+		{
+			free(grid);
+			return (NULL);
+		}
 	}
 	return (ft_fill_abc(tetro, grid, size, grid_size));
 }
@@ -63,7 +70,10 @@ void	ft_print_grid_abc(t_tetro *struct_tetro, int grid_size)
 	char	**grid_abc;
 
 	y = 0;
-	grid_abc = ft_abc_grid(struct_tetro, grid_size);
+	if (!(grid_abc = ft_abc_grid(struct_tetro, grid_size)))
+	{
+		return ;
+	}
 	while (grid_abc[y])
 	{
 		x = 0;
@@ -75,4 +85,5 @@ void	ft_print_grid_abc(t_tetro *struct_tetro, int grid_size)
 		ft_putchar('\n');
 		y++;
 	}
+	free(grid_abc);
 }

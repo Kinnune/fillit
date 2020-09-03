@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+        */
+/*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 12:30:12 by jraty             #+#    #+#             */
-/*   Updated: 2020/09/03 00:11:10 by jraty            ###   ########.fr       */
+/*   Updated: 2020/09/03 05:45:45 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ t_tetro				*ft_process_raw(char **raw);
 t_tetro				*ft_new_tetro(char *tetro_string, t_tetro *previous, int i);
 
 int					ft_usage(void);
+
+int					ft_error(void);
 
 int					ft_reading(int fd, int *i, int *l, char *line);
 

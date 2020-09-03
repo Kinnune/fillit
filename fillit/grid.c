@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   grid.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+        */
+/*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/19 16:47:05 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/09/03 00:45:44 by jraty            ###   ########.fr       */
+/*   Updated: 2020/09/03 05:34:06 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,20 @@ int		**ft_bool_2d(int **grid, int size)
 {
 	int grid_size;
 
-	if (grid)
-	{
-		free(grid);
-	}
 	grid_size = size;
-	grid = ft_memalloc(sizeof(int *) * (grid_size + 1));
+	if (!(grid = ft_memalloc(sizeof(int *) * (grid_size + 1))))
+	{
+		return (NULL);
+	}
 	grid[size] = NULL;
 	while (size)
 	{
 		size--;
-		grid[size] = ft_memalloc(sizeof(int) * grid_size);
+		if (!(grid[size] = ft_memalloc(sizeof(int) * grid_size)))
+		{
+			free (grid);
+			return (NULL);
+		}
 	}
 	return (grid);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+        */
+/*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/03 00:24:25 by jraty             #+#    #+#             */
-/*   Updated: 2020/09/03 00:26:17 by jraty            ###   ########.fr       */
+/*   Updated: 2020/09/03 05:47:40 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ int		main(int argc, char **argv)
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
 		return (0);
 	if (ft_checker1(fd) == 0)
-		return (0);
+		return (ft_error());
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
 		return (0);
 	if (ft_checker2(fd) == 0)
-		return (0);
+		return (ft_error());
 	struct_tetro = ft_process_raw(ft_file_save(fd, argv));
 	head = struct_tetro;
 	grid_size = ft_board_size(ft_tetro_count(struct_tetro));
