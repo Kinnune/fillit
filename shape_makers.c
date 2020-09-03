@@ -6,7 +6,7 @@
 /*   By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 13:30:41 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/09/03 10:28:41 by jraty            ###   ########.fr       */
+/*   Updated: 2020/09/03 11:24:20 by jraty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,11 @@ char	**ft_file_save(int fd, char **argv)
 		write(2, "error\n", 6);
 		return (NULL);
 	}
-	read(fd, file, f_size);
+	if (read(fd, file, f_size) == -1)
+	{
+		write(2, "error\n", 6);
+		return (NULL);
+	}
 	return (ft_single_shapes(file));
 }
 
