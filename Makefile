@@ -6,7 +6,7 @@
 #    By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/06 16:20:49 by jraty             #+#    #+#              #
-#    Updated: 2020/09/02 22:53:17 by jraty            ###   ########.fr        #
+#    Updated: 2020/09/03 09:57:15 by jraty            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = fillit
 SRCS = tetri_validator.c shape_makers.c struct_processing.c move_coordinates.c \
 		grid.c main.c end_result.c solver_shorteners.c
 
-LIB = ../libft
+LIB = libft
 
 FLAGS = -Wall -Wextra -Werror
 
