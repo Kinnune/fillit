@@ -6,7 +6,7 @@
 /*   By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 13:30:41 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/09/03 09:47:26 by jraty            ###   ########.fr       */
+/*   Updated: 2020/09/03 10:28:41 by jraty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ char	**ft_file_save(int fd, char **argv)
 
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
 	{
+		write(2, "error\n", 6);
 		return (NULL);
 	}
 	f_size = ft_file_size(fd);
@@ -56,6 +57,7 @@ char	**ft_file_save(int fd, char **argv)
 	}
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
 	{
+		write(2, "error\n", 6);
 		return (NULL);
 	}
 	read(fd, file, f_size);
@@ -70,7 +72,6 @@ int		ft_error(void)
 
 int		ft_usage(void)
 {
-	ft_putstr("fillit: missing tetromino source file\n");
-	ft_putstr("usage : ./fillit [source_file_path]\n");
+	ft_putstr("usage: ./fillit source_file\n");
 	return (0);
 }
