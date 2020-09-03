@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_processing.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 19:06:20 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/09/03 06:37:50 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/09/03 12:00:10 by jraty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,6 @@ t_tetro	*ft_process_raw(char **raw)
 		}
 		copy = copy->next;
 	}
+	ft_free2d(raw);
 	return (head);
 }
